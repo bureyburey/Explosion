@@ -1,3 +1,9 @@
+/* 
+Explosion original code can be found here (site currently under maintnance, so must enter via web archive snapshot):
+https://web.archive.org/web/20160423093009/http://www.gameplaypassion.com/blog/explosion-effect-html5-canvas/
+all credit goes to original author: 
+Zouhair Serrar
+*/
 ////// EXPLOSION METHODS START
 function Explosion(ctx){
 this.ctx=ctx;
