@@ -129,7 +129,7 @@ this.update=function(frameDelay){
 
        particle.update(frameDelay);
         particle.draw(this.ctx);
-        if(this.particles.scale===0){
+        if(particle.scale===0){
             this.particles.splice(i,1);
         }
     }
