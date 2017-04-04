@@ -10,7 +10,7 @@ Zouhair Serrar
  canvas = document.getElementById("myCanvas"); // get the canvas from html &lt;canvas id="myCanvas"&gt;&lt;/canvas&gt;
  ctx = canvas.getContext("2d"); // your 2D context variable
  exp = new Explosion(ctx); // pass the context variable to the Explosion constructor
- exp.createBasicExplosion(50,50,"green"); // generate green basic explosion at coordinates (50,50) (only on prot/proto.js files
+ exp.createBasicExplosion(50,50,"green"); // generate basic green explosion at coordinates (50,50)
  exp.createExplosion(100,100,"blue"); // generate blue explosion at coordinates (100,100)
  // createExplosion(x,y,color)
  // drawing loop
