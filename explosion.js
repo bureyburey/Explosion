@@ -24,8 +24,7 @@ function randVal(min,max){
     this.velocityY = 0;
     this.scaleSpeed = 0.5;
 
-    this.update = function(ms)
-    {
+    this.update = function(ms){
         // shrinking
         this.scale -= this.scaleSpeed * ms / 1000.0;
 
@@ -38,8 +37,7 @@ function randVal(min,max){
         this.y += this.velocityY * ms/1000.0;
     };
 
-    this.draw = function(context2D)
-    {
+    this.draw = function(context2D){
         // translating the 2D context to the particle coordinates
         context2D.save();
         context2D.translate(this.x, this.y);
@@ -58,6 +56,34 @@ function randVal(min,max){
 }
 
 
+/*
+ * Basic Explosion, all particles move and shrink at the same speed.
+ * 
+ * Parameter : explosion center
+ */
+this.createBasicExplosion = function(x, y, color){
+	// creating 4 particles that scatter at 0, 90, 180 and 270 degrees
+	for (var angle=0; angle<360; angle+=90){
+		var particle = new Particle();
+
+		// particle will start at explosion center
+		particle.x = x;
+		particle.y = y;
+
+		particle.color = color;
+
+		var speed = 50.0;
+
+		// velocity is rotated by "angle"
+		particle.velocityX = speed * Math.cos(angle * Math.PI / 180.0);
+		particle.velocityY = speed * Math.sin(angle * Math.PI / 180.0);
+
+		// adding the newly created particle to the "particles" array
+		this.particles.push(particle);
+	}
+}    
+    
+    
 this.createExplosion=function(x, y, color){
 /*
  * Advanced Explosion effect
@@ -75,8 +101,7 @@ this.createExplosion=function(x, y, color){
     var minScaleSpeed = 1.0;
     var maxScaleSpeed = 4.0;
 
-    for (var angle=0; angle<360; angle += Math.round(360/count))
-    {
+    for (var angle=0; angle<360; angle += Math.round(360/count)){
         var particle = new Particle();
 
         particle.x = x;
@@ -97,8 +122,7 @@ this.createExplosion=function(x, y, color){
     }
 }
 
-this.update=function(frameDelay)
-{
+this.update=function(frameDelay){
     // update and draw particles
     for(var i=0; i<this.particles.length;i++){
         var particle = this.particles[i];
