@@ -14,11 +14,11 @@ function Explosion(ctx){
 
 Explosion.prototype.randVal = function (min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
-}
+};
 
 Explosion.prototype.randFloat = function(min, max){
     return Math.random() * (max - min) + min;
-}
+};
 
 Explosion.prototype.update=function(frameDelay){
     // update and draw particles
@@ -31,7 +31,34 @@ Explosion.prototype.update=function(frameDelay){
             this.particles.splice(i,1);
         }
     }
-}
+};
+/*
+ * Basic Explosion, all particles move and shrink at the same speed.
+ * 
+ * Parameter : explosion center
+ */
+Explosion.prototype.createBasicExplosion = function(x, y , color){
+	// creating 4 particles that scatter at 0, 90, 180 and 270 degrees
+	for (var angle=0; angle<360; angle+=90)
+	{
+		var particle = new Particle();
+
+		// particle will start at explosion center
+		particle.x = x;
+		particle.y = y;
+
+		particle.color = color;
+
+		var speed = 50.0;
+
+		// velocity is rotated by "angle"
+		particle.velocityX = speed * Math.cos(angle * Math.PI / 180.0);
+		particle.velocityY = speed * Math.sin(angle * Math.PI / 180.0);
+
+		// adding the newly created particle to the "particles" array
+		this.particles.push(particle);
+	}
+};
 
 
 Explosion.prototype.createExplosion=function(x, y, color){
@@ -70,7 +97,7 @@ Explosion.prototype.createExplosion=function(x, y, color){
 
         this.particles.push(particle);
     }
-}
+};
 
 // Particle Prototype
 function Particle(){
@@ -97,7 +124,7 @@ Particle.prototype.update = function(ms){
     // moving away from explosion center
     this.x += this.velocityX * ms/1000.0;
     this.y += this.velocityY * ms/1000.0;
-}
+};
 
 Particle.prototype.draw = function(context2D){
     // translating the 2D context to the particle coordinates
