@@ -8,7 +8,8 @@ Zouhair Serrar
 function Explosion(ctx){
 this.ctx=ctx;
 this.particles=[];
-function randVal(min,max){
+	
+this.randVal(min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
 }
  function Particle(){
@@ -61,9 +62,15 @@ function randVal(min,max){
  * 
  * Parameter : explosion center
  */
-this.createBasicExplosion = function(x, y, color){
-	// creating 4 particles that scatter at 0, 90, 180 and 270 degrees
-	for (var angle=0; angle<360; angle+=90){
+this.createBasicExplosion = function(x, y, color, _deltaAngle){
+	// creating particles that scatter at every deltaAngle degrees
+	var deltaAngle = _deltaAngle || 90;
+	var minSpeed = 40.0;
+    	var maxSpeed = 100.0;
+	
+    	var speed = this.randVal(minSpeed, maxSpeed);
+	
+	for (var angle=0; angle<360; angle+=deltaAngle){
 		var particle = new Particle();
 
 		// particle will start at explosion center
@@ -71,8 +78,6 @@ this.createBasicExplosion = function(x, y, color){
 		particle.y = y;
 
 		particle.color = color;
-
-		var speed = 50.0;
 
 		// velocity is rotated by "angle"
 		particle.velocityX = speed * Math.cos(angle * Math.PI / 180.0);
@@ -82,8 +87,7 @@ this.createBasicExplosion = function(x, y, color){
 		this.particles.push(particle);
 	}
 }    
-    
-    
+
 this.createExplosion=function(x, y, color){
 /*
  * Advanced Explosion effect
@@ -107,13 +111,13 @@ this.createExplosion=function(x, y, color){
         particle.x = x;
         particle.y = y;
 
-        particle.radius = randVal(minSize, maxSize);
+        particle.radius = this.randVal(minSize, maxSize);
 
         particle.color = color;
 
-        particle.scaleSpeed = randVal(minScaleSpeed, maxScaleSpeed);
+        particle.scaleSpeed = this.randVal(minScaleSpeed, maxScaleSpeed);
 
-        var speed = randVal(minSpeed, maxSpeed);
+        var speed = this.randVal(minSpeed, maxSpeed);
 
         particle.velocityX = speed * Math.cos(angle * Math.PI / 180.0);
         particle.velocityY = speed * Math.sin(angle * Math.PI / 180.0);
