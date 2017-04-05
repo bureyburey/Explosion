@@ -37,27 +37,30 @@ Explosion.prototype.update=function(frameDelay){
  * 
  * Parameter : explosion center
  */
-Explosion.prototype.createBasicExplosion = function(x, y , color){
-	// creating 4 particles that scatter at 0, 90, 180 and 270 degrees
-	for (var angle=0; angle<360; angle+=90)
-	{
-		var particle = new Particle();
+Explosion.prototype.createBasicExplosion = function(x, y, color, _deltaAngle){
+    // creating particles that scatter at every deltaAngle degrees
+    var deltaAngle = _deltaAngle || 90;
+    var minSpeed = 40.0;
+    var maxSpeed = 100.0;
+    var speed = this.randVal(minSpeed, maxSpeed);
+    
+    for (var angle=0; angle<360; angle+=deltaAngle)
+    {
+        var particle = new Particle();
 
-		// particle will start at explosion center
-		particle.x = x;
-		particle.y = y;
+        // particle will start at explosion center
+        particle.x = x;
+        particle.y = y;
 
-		particle.color = color;
+        particle.color = color;
 
-		var speed = 50.0;
+        // velocity is rotated by "angle"
+        particle.velocityX = speed * Math.cos(angle * Math.PI / 180.0);
+        particle.velocityY = speed * Math.sin(angle * Math.PI / 180.0);
 
-		// velocity is rotated by "angle"
-		particle.velocityX = speed * Math.cos(angle * Math.PI / 180.0);
-		particle.velocityY = speed * Math.sin(angle * Math.PI / 180.0);
-
-		// adding the newly created particle to the "particles" array
-		this.particles.push(particle);
-	}
+        // adding the newly created particle to the "particles" array
+        this.particles.push(particle);
+    }
 };
 
 
