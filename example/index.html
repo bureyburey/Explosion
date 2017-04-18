@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Explosions!</title>
+        <!--
+        the script below contains the
+        Explosion function to generate
+        explosions
+        -->
+        <script src="https://cdn.rawgit.com/bureyburey/Explosion/master/explosion.pr.js"></script>
+        <!-- Explosion original code can be found here (site currently under maintnance, so must enter via web archive snapshot):
+        https://web.archive.org/web/20160423093009/http://www.gameplaypassion.com/blog/explosion-effect-html5-canvas/
+        all credit goes to original author: 
+        Zouhair Serrar
+        
+        changes to the original code were
+        made by me for simplicity to
+        make an independent class which
+        generates explosions
+        -->
+    </head>
+    <body>
+    <label><input type="checkbox" id="chkRand" />Random Color</label>
+    <br />
+    <label><input type="checkbox" id="chkBasic" />Basic Explosion</label>
+<select id="selectBomb">
+<option>Holy</option>
+<option>💣</option>
+<option>😲</option>
+<option>😡</option>
+<option>😱</option>
+<option>🎃</option>
+<option>🍩</option>
+<option>🎁</option>
+<option>🍪</option>
+
+</select>    
+    <select id="selectAngle" style="display:none">
+    <option value="90">90 degrees (default)</option>
+    <option value="120">120 degrees</option>
+    <option value="45">45 degrees</option>
+    <option value="30">30 degrees</option>
+    </select>
+    <br />
+    <a href="https://web.archive.org/web/20160423093009/http://www.gameplaypassion.com/blog/explosion-effect-html5-canvas/">Original Tutorial</a>
+        <canvas id="myCanvas"></canvas>
+    </body>
+</html>
