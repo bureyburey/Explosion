@@ -136,10 +136,8 @@ function start(){
         ctx.font="10px Times New Roman";
         ctx.fillStyle="white";
         ctx.fillText("# Particles: "+exp.particles.length, 10, 10);
-        ctx.fillText("THANK YOU FOR 100+ 👍👍👍!!!",canvas.width/2-80,40);
     }
-    setInterval(draw,33);
-    
+    setInterval(draw,33);   
 }
 
 // Holy hand grenade image data in base64 format
